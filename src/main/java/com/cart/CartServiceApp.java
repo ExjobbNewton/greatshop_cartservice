@@ -23,22 +23,28 @@ import javax.ws.rs.core.UriInfo;
 
 public class CartServiceApp extends Application
 {
-	@GET
-    @Produces(MediaType.APPLICATION_JSON)
-    public Response getDirectory(@Context UriInfo uri) {
-        Link selfLink = Link.fromUri(uri.getBaseUri())
-                .rel("self").type(MediaType.APPLICATION_JSON)
-                .build();
-        Link productsLink = Link.fromUri(uri.getBaseUri() + "cart")
-                .rel("cart").type(MediaType.APPLICATION_JSON)
-                .build();
-
-        return Response.ok()
-                .lastModified(new Date())
-                .location(uri.getRequestUri())
-                .links(selfLink, productsLink)
-                .build();
+    @GET
+    @Produces("text/plain")
+    public Response doGet() {
+        return Response.ok("method doGet invoked " + new Date()).build();
     }
+
+//	@GET
+//    @Produces(MediaType.APPLICATION_JSON)
+//    public Response getDirectory(@Context UriInfo uri) {
+//        Link selfLink = Link.fromUri(uri.getBaseUri())
+//                .rel("self").type(MediaType.APPLICATION_JSON)
+//                .build();
+//        Link productsLink = Link.fromUri(uri.getBaseUri() + "cart")
+//                .rel("cart").type(MediaType.APPLICATION_JSON)
+//                .build();
+//
+//        return Response.ok()
+//                .lastModified(new Date())
+//                .location(uri.getRequestUri())
+//                .links(selfLink, productsLink)
+//                .build();
+//    }
 	
 	//public static void main(String[] args) {}
 }
